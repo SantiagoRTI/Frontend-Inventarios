@@ -51,7 +51,7 @@
         {{ errorMessage }}
       </div>
 
-      <button type="submit" class="btn-login" [disabled]="loading">
+      <button type="submit" class="btn-login" [disabled]="loading" data-testid="login-submit">
         <span *ngIf="!loading">Iniciar Sesión</span>
         <span *ngIf="loading">
           <i class="pi pi-spin pi-spinner"></i>

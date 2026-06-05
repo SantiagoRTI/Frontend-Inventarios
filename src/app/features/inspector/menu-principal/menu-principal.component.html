@@ -20,7 +20,7 @@
       <p>Escanear código de barras o QR con la cámara</p>
     </button>
 
-    <button class="menu-option" (click)="navegarA('digitar')">
+    <button class="menu-option" (click)="navegarA('digitar')" data-testid="menu-digitar">
       <div class="option-icon">
         <i class="pi pi-pencil"></i>
       </div>
@@ -28,7 +28,7 @@
       <p>Ingresar código manualmente</p>
     </button>
 
-    <button class="menu-option" (click)="navegarA('agregar')">
+    <button class="menu-option" (click)="navegarA('agregar')" data-testid="menu-agregar">
       <div class="option-icon">
         <i class="pi pi-plus-circle"></i>
       </div>
@@ -44,7 +44,7 @@
       <p>Ver activos cruzados y resumen</p>
     </button>
 
-    <button class="menu-option" (click)="navegarA('reporte')">
+    <button class="menu-option" (click)="navegarA('reporte')" data-testid="menu-reporte">
       <div class="option-icon">
         <i class="pi pi-file-excel"></i>
       </div>

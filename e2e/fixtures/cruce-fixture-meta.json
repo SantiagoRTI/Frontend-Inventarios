@@ -1,0 +1,46 @@
+{
+  "generatedAt": 1780681616526,
+  "normalBarcodes": [
+    "7701616526001",
+    "7701616526002"
+  ],
+  "editadoBarcodes": [
+    "7701616526003",
+    "7701616526004"
+  ],
+  "faltanteIds": [
+    "CRU-F01",
+    "CRU-F02",
+    "CRU-F03"
+  ],
+  "sobranteActivos": [
+    {
+      "id": "SOB-01",
+      "etiqueta": "7709161652600",
+      "serial": "SER-SOB-01"
+    },
+    {
+      "id": "SOB-02",
+      "etiqueta": "7709161652600",
+      "serial": "SER-SOB-02"
+    },
+    {
+      "id": "SOB-03",
+      "etiqueta": "7709161652600",
+      "serial": "SER-SOB-03"
+    }
+  ],
+  "resumenEsperado": {
+    "total": 10,
+    "cruceNormal": 2,
+    "editado": 2,
+    "faltante": 3,
+    "sobrante": 3
+  },
+  "estadosTabla": {
+    "CRUCE NORMAL": 2,
+    "EDITADO": 2,
+    "FALTANTE": 3,
+    "SOBRANTE": 3
+  }
+}

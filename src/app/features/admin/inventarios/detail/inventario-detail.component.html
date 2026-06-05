@@ -30,7 +30,7 @@
         Descargar Plantilla
       </button>
 
-      <label class="btn btn-success">
+      <label class="btn btn-success" data-testid="upload-excel">
         <i class="pi pi-upload"></i>
         Subir Excel
         <input
@@ -43,6 +43,7 @@
 
       <button
         class="btn btn-warning"
+        data-testid="ejecutar-cruce"
         (click)="ejecutarCruceYDescargar()"
         [disabled]="procesandoCruce()">
         <i [class]="procesandoCruce() ? 'pi pi-spin pi-spinner' : 'pi pi-sync'"></i>
@@ -80,23 +81,23 @@
 
     <div class="stats-cruce" *ngIf="activosCruzadosData()?.resumen">
       <div class="stat-card stat-total">
-        <span class="stat-value">{{ activosCruzadosData()?.resumen?.total || 0 }}</span>
+        <span class="stat-value" data-testid="stat-total">{{ activosCruzadosData()?.resumen?.total || 0 }}</span>
         <span class="stat-label">Total</span>
       </div>
       <div class="stat-card stat-normal">
-        <span class="stat-value">{{ activosCruzadosData()?.resumen?.cruceNormal || 0 }}</span>
+        <span class="stat-value" data-testid="stat-normal">{{ activosCruzadosData()?.resumen?.cruceNormal || 0 }}</span>
         <span class="stat-label">Cruce Normal</span>
       </div>
       <div class="stat-card stat-editado">
-        <span class="stat-value">{{ activosCruzadosData()?.resumen?.editado || 0 }}</span>
+        <span class="stat-value" data-testid="stat-editado">{{ activosCruzadosData()?.resumen?.editado || 0 }}</span>
         <span class="stat-label">Editado</span>
       </div>
       <div class="stat-card stat-sobrante">
-        <span class="stat-value">{{ activosCruzadosData()?.resumen?.sobrante || 0 }}</span>
+        <span class="stat-value" data-testid="stat-sobrante">{{ activosCruzadosData()?.resumen?.sobrante || 0 }}</span>
         <span class="stat-label">Sobrante</span>
       </div>
       <div class="stat-card stat-faltante">
-        <span class="stat-value">{{ activosCruzadosData()?.resumen?.faltante || 0 }}</span>
+        <span class="stat-value" data-testid="stat-faltante">{{ activosCruzadosData()?.resumen?.faltante || 0 }}</span>
         <span class="stat-label">Faltante</span>
       </div>
     </div>

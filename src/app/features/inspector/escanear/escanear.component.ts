@@ -110,9 +110,28 @@ export class EscanearComponent implements OnInit {
     const activo = this.activoEncontrado();
     if (!activo) return;
 
+    const inventarioId = this.inspectorState.getInventarioId();
+    if (!inventarioId) {
+      alert('No hay inventario activo. Valide el código de inventario primero.');
+      return;
+    }
+
     this.loading.set(true);
 
-    this.activoService.crear(activo).subscribe({
+    const payload: Activo = {
+      idActivo: activo.idActivo,
+      etiqueta: activo.etiqueta,
+      descripcion: activo.descripcion,
+      marca: activo.marca,
+      serial: activo.serial,
+      modelo: activo.modelo,
+      responsable: activo.responsable,
+      ciudad: activo.ciudad,
+      estado: activo.estado || 'Bueno',
+      inventarioId,
+    };
+
+    this.activoService.crear(payload).subscribe({
       next: () => {
         this.loading.set(false);
         alert('Activo registrado exitosamente');
