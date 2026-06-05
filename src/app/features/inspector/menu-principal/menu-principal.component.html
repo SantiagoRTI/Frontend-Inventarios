@@ -1,0 +1,55 @@
+<div class="menu-container">
+  <div class="menu-header">
+    <h1>Menú Principal</h1>
+    <div class="inventario-info">
+      <i class="pi pi-folder"></i>
+      <span>{{ inventarioNombre }}</span>
+      <button class="btn-cambiar-inventario" (click)="cambiarInventario()" title="Cambiar inventario">
+        <i class="pi pi-pencil"></i>
+        Cambiar
+      </button>
+    </div>
+  </div>
+
+  <div class="menu-grid">
+    <button class="menu-option" (click)="navegarA('escanear')">
+      <div class="option-icon">
+        <i class="pi pi-camera"></i>
+      </div>
+      <h3>Escanear Código</h3>
+      <p>Escanear código de barras o QR con la cámara</p>
+    </button>
+
+    <button class="menu-option" (click)="navegarA('digitar')">
+      <div class="option-icon">
+        <i class="pi pi-pencil"></i>
+      </div>
+      <h3>Digitar Código</h3>
+      <p>Ingresar código manualmente</p>
+    </button>
+
+    <button class="menu-option" (click)="navegarA('agregar')">
+      <div class="option-icon">
+        <i class="pi pi-plus-circle"></i>
+      </div>
+      <h3>Agregar Activo</h3>
+      <p>Registrar nuevo activo</p>
+    </button>
+
+    <button class="menu-option" (click)="navegarA('detalle')">
+      <div class="option-icon">
+        <i class="pi pi-list"></i>
+      </div>
+      <h3>Detalle Inventario</h3>
+      <p>Ver activos cruzados y resumen</p>
+    </button>
+
+    <button class="menu-option" (click)="navegarA('reporte')">
+      <div class="option-icon">
+        <i class="pi pi-file-excel"></i>
+      </div>
+      <h3>Generar Reporte</h3>
+      <p>Cruzar activos y descargar Excel</p>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+/* ===================================
+   Variables de Colores del Sistema
+   Inventarios RTI
+   =================================== */
+
+:root {
+  /* Colores Principales */
+  --color-toolbar: #464444;
+  --color-toolbar-hover: #8f7c7d;
+  
+  --color-background: #FFFFFF;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-light: #999999;
+  
+  /* Colores de Botones */
+  --color-btn-detail: #00FF29;
+  --color-btn-detail-hover: #00cc21;
+  
+  --color-btn-edit: #3C81F6;
+  --color-btn-edit-hover: #2869d8;
+  
+  --color-btn-delete: #FF0000;
+  --color-btn-delete-hover: #cc0000;
+  
+  --color-btn-add: #141313;
+  --color-btn-add-hover: #b81a1c;
+  
+  --color-btn-logout: #DC1F21;
+  --color-btn-logout-hover: #b81a1c;
+  
+  --color-login: #000000;
+  --color-login-hover: #c0181f;
+  
+  /* Colores Secundarios */
+  --color-cancel: #e0e0e0;
+  --color-cancel-hover: #d0d0d0;
+  --color-cancel-text: #333;
+  
+  /* Bordes y Fondos */
+  --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
+  --color-background-light: #f5f5f5;
+  --color-background-hover: #f9f9f9;
+  
+  /* Estados (Tags) */
+  --color-success-bg: #e8f5e9;
+  --color-success-text: #2e7d32;
+  
+  --color-warning-bg: #fff3e0;
+  --color-warning-text: #f57c00;
+  
+  --color-danger-bg: #ffebee;
+  --color-danger-text: #c62828;
+  
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.2);
+  
+  /* Transiciones */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+}

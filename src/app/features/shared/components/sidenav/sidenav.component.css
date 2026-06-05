@@ -1,0 +1,56 @@
+.sidenav {
+  width: 250px;
+  background: #263238;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidenav-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sidenav-menu {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.menu-item.active {
+  background: rgba(190, 30, 45, 0.1);
+  color: var(--color-toolbar);
+  border-left-color: var(--color-toolbar);
+}
+
+.menu-item i {
+  font-size: 1.2rem;
+  width: 24px;
+}
+
+.menu-item span {
+  font-size: 0.95rem;
+  font-weight: 500;
+}

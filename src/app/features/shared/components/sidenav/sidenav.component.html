@@ -1,0 +1,15 @@
+<div class="sidenav">
+  <div class="sidenav-header">
+    <h3>{{ title }}</h3>
+  </div>
+  <nav class="sidenav-menu">
+    <a 
+      *ngFor="let item of items"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      class="menu-item">
+      <i [class]="'pi ' + item.icon"></i>
+      <span>{{ item.label }}</span>
+    </a>
+  </nav>
+</div>

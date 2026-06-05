@@ -1,0 +1,139 @@
+<div class="escanear-container">
+  <div class="escanear-header">
+    <button class="btn-back" (click)="volver()">
+      <i class="pi pi-arrow-left"></i>
+      Volver
+    </button>
+    <h2>Escanear Código</h2>
+  </div>
+
+  <!-- Scanner no iniciado -->
+  <div class="scanner-inicio" *ngIf="!scannerEnabled() && !activoEncontrado() && !errorMessage()">
+    <div class="inicio-icon">
+      <i class="pi pi-camera"></i>
+    </div>
+    <p>Activa la cámara para escanear el código del activo</p>
+    <div class="formatos-badge">
+      <span class="badge"><i class="pi pi-barcode"></i> Código de Barras</span>
+      <span class="badge badge-qr"><i class="pi pi-qrcode"></i> QR</span>
+    </div>
+    <button class="btn-iniciar" (click)="iniciarScanner()">
+      <i class="pi pi-camera"></i>
+      Activar Cámara
+    </button>
+  </div>
+
+  <!-- Scanner activo -->
+  <div class="scanner-activo" *ngIf="scannerEnabled()">
+    <div class="scanner-frame">
+      <zxing-scanner
+        [device]="deviceCurrent"
+        [formats]="allowedFormats"
+        (scanSuccess)="onCodigoEscaneado($event)"
+        (camerasFound)="onCamerasFound($event)"
+        (permissionResponse)="onPermissionResponse($event)"
+        [tryHarder]="true">
+      </zxing-scanner>
+      
+      <!-- Overlay con indicador de escaneo -->
+      <div class="scanner-overlay">
+        <div class="scan-line"></div>
+        <p class="scan-instruction">
+          <i class="pi pi-barcode"></i> Código de barras &nbsp;|&nbsp;
+          <i class="pi pi-qrcode"></i> QR
+        </p>
+      </div>
+    </div>
+
+    <div class="scanner-controls">
+      <button class="btn-control" (click)="cambiarCamara()" *ngIf="devicesAvailable.length > 1">
+        <i class="pi pi-refresh"></i>
+        Cambiar Cámara
+      </button>
+      <button class="btn-control btn-cancel" (click)="detenerScanner()">
+        <i class="pi pi-times"></i>
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <!-- Activo encontrado -->
+  <div class="activo-encontrado" *ngIf="activoEncontrado() && !loading()">
+    <div class="success-icon">
+      <i class="pi pi-check-circle"></i>
+    </div>
+    <h3>Activo Encontrado</h3>
+    
+    <div class="activo-datos">
+      <div class="dato-item">
+        <label>ID Activo:</label>
+        <span>{{ activoEncontrado()?.idActivo }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Etiqueta:</label>
+        <span>{{ activoEncontrado()?.etiqueta }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Descripción:</label>
+        <span>{{ activoEncontrado()?.descripcion }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Marca:</label>
+        <span>{{ activoEncontrado()?.marca }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Serial:</label>
+        <span>{{ activoEncontrado()?.serial }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Modelo:</label>
+        <span>{{ activoEncontrado()?.modelo }}</span>
+      </div>
+      <div class="dato-item" *ngIf="activoEncontrado()?.responsable">
+        <label>Responsable:</label>
+        <span>{{ activoEncontrado()?.responsable }}</span>
+      </div>
+      <div class="dato-item" *ngIf="activoEncontrado()?.ciudad">
+        <label>Ciudad:</label>
+        <span>{{ activoEncontrado()?.ciudad }}</span>
+      </div>
+    </div>
+
+    <div class="activo-acciones">
+      <button class="btn-accion btn-editar" (click)="editarActivo()">
+        <i class="pi pi-pencil"></i>
+        Editar
+      </button>
+      <button class="btn-accion btn-enviar" (click)="enviarActivo()">
+        <i class="pi pi-check"></i>
+        Enviar
+      </button>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="error-encontrado" *ngIf="errorMessage() && !loading()">
+    <div class="error-icon">
+      <i class="pi pi-times-circle"></i>
+    </div>
+    <h3>No se encontró el activo</h3>
+    <p>{{ errorMessage() }}</p>
+    
+    <div class="error-acciones">
+      <button class="btn-accion btn-reintentar" (click)="intentarNuevamente()">
+        <i class="pi pi-refresh"></i>
+        Intentar Nuevamente
+      </button>
+      <button class="btn-accion btn-volver" (click)="volver()">
+        <i class="pi pi-arrow-left"></i>
+        Volver al Menú
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-overlay" *ngIf="loading()">
+    <i class="pi pi-spin pi-spinner"></i>
+    <p>Procesando...</p>
+  </div>
+</div>

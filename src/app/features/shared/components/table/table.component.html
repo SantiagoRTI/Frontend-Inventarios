@@ -1,0 +1,62 @@
+<div class="table-container">
+  <div class="table-header" *ngIf="showAddButton">
+    <button class="btn-add" (click)="onAdd.emit()">
+      <i class="pi pi-plus"></i>
+      {{ addButtonLabel }}
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!loading && data.length > 0">
+        <tr *ngFor="let row of data">
+          <td *ngFor="let col of columns">
+            <ng-container *ngIf="col.type !== 'actions' && col.type !== 'tag'">
+              {{ row[col.field] }}
+            </ng-container>
+            
+            <ng-container *ngIf="col.type === 'tag'">
+              <span [class]="'tag tag-' + getTagSeverity(row[col.field])">
+                {{ row[col.field] }}
+              </span>
+            </ng-container>
+
+            <ng-container *ngIf="col.type === 'actions'">
+              <div class="actions">
+                <button 
+                  *ngFor="let action of actions" 
+                  [class]="'btn-action btn-' + action"
+                  [title]="getActionLabel(action)"
+                  (click)="onAction.emit({ action, row })">
+                  <i [class]="'pi ' + getActionIcon(action)"></i>
+                </button>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!loading && data.length === 0">
+        <tr>
+          <td [attr.colspan]="columns.length" class="empty-message">
+            No se encontraron registros
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="loading">
+        <tr>
+          <td [attr.colspan]="columns.length" class="loading-message">
+            <i class="pi pi-spin pi-spinner"></i>
+            Cargando...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

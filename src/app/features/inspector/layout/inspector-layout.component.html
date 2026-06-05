@@ -1,0 +1,16 @@
+<div class="inspector-layout">
+  <app-toolbar
+    [title]="environment.appName"
+    [subtitle]="subtitle"
+    [logo]="environment.logo"
+    [userLabel]="currentUser"
+    [showLogout]="true"
+    (onLogout)="logout()">
+  </app-toolbar>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-loading></app-loading>
+</div>

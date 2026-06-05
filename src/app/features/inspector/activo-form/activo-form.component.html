@@ -1,0 +1,181 @@
+<div class="form-container">
+  <div class="form-header">
+    <button class="btn-back" (click)="volver()">
+      <i class="pi pi-arrow-left"></i>
+      Volver
+    </button>
+    <h2>{{ tituloFormulario }}</h2>
+  </div>
+
+  <div class="form-card">
+    <form [formGroup]="activoForm" (ngSubmit)="guardarActivo()">
+      <div class="form-grid">
+        <!-- ID Activo -->
+        <div class="form-group">
+          <label for="idActivo">
+            ID Activo <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="idActivo"
+            formControlName="idActivo"
+            placeholder="Ej: ACT-001"
+            [class.input-error]="campoInvalido('idActivo')"
+          />
+          <span class="error-message" *ngIf="campoInvalido('idActivo')">
+            {{ obtenerError('idActivo') }}
+          </span>
+          <span class="info-message" *ngIf="modoEdicion && activoForm.get('idActivo')?.disabled">
+            El ID del activo no se puede modificar
+          </span>
+        </div>
+
+        <!-- Etiqueta / Código de Barras -->
+        <div class="form-group">
+          <label for="etiqueta">
+            Etiqueta / Código de Barras <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="etiqueta"
+            formControlName="etiqueta"
+            placeholder="Ej: 7501000111800"
+            [class.input-error]="campoInvalido('etiqueta')"
+          />
+          <span class="error-message" *ngIf="campoInvalido('etiqueta')">
+            {{ obtenerError('etiqueta') }}
+          </span>
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group full-width">
+          <label for="descripcion">
+            Descripción <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="descripcion"
+            formControlName="descripcion"
+            placeholder="Ej: Portátil Lenovo ThinkPad"
+            [class.input-error]="campoInvalido('descripcion')"
+          />
+          <span class="error-message" *ngIf="campoInvalido('descripcion')">
+            {{ obtenerError('descripcion') }}
+          </span>
+        </div>
+
+        <!-- Marca -->
+        <div class="form-group">
+          <label for="marca">
+            Marca <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="marca"
+            formControlName="marca"
+            placeholder="Ej: Lenovo"
+            [class.input-error]="campoInvalido('marca')"
+          />
+          <span class="error-message" *ngIf="campoInvalido('marca')">
+            {{ obtenerError('marca') }}
+          </span>
+        </div>
+
+        <!-- Serial -->
+        <div class="form-group">
+          <label for="serial">
+            Serial <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="serial"
+            formControlName="serial"
+            placeholder="Ej: ABC123456"
+            [class.input-error]="campoInvalido('serial')"
+          />
+          <span class="error-message" *ngIf="campoInvalido('serial')">
+            {{ obtenerError('serial') }}
+          </span>
+        </div>
+
+        <!-- Modelo -->
+        <div class="form-group full-width">
+          <label for="modelo">
+            Modelo <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="modelo"
+            formControlName="modelo"
+            placeholder="Ej: ThinkPad X1"
+            [class.input-error]="campoInvalido('modelo')"
+          />
+          <span class="error-message" *ngIf="campoInvalido('modelo')">
+            {{ obtenerError('modelo') }}
+          </span>
+        </div>
+
+        <!-- Responsable -->
+        <div class="form-group">
+          <label for="responsable">
+            Responsable
+          </label>
+          <input
+            type="text"
+            id="responsable"
+            formControlName="responsable"
+            placeholder="Ej: Juan Pérez"
+          />
+        </div>
+
+        <!-- Ciudad -->
+        <div class="form-group">
+          <label for="ciudad">
+            Ciudad
+          </label>
+          <input
+            type="text"
+            id="ciudad"
+            formControlName="ciudad"
+            placeholder="Ej: Bogotá"
+          />
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group">
+          <label for="estado">
+            Estado
+          </label>
+          <select id="estado" formControlName="estado">
+            <option value="Bueno">Bueno</option>
+            <option value="Regular">Regular</option>
+            <option value="Malo">Malo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="cancelar()" [disabled]="loading()">
+          <i class="pi pi-times"></i>
+          Cancelar
+        </button>
+        <button type="submit" class="btn-submit" [disabled]="loading()">
+          <span *ngIf="!loading()">
+            <i class="pi pi-check"></i>
+            {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
+          </span>
+          <span *ngIf="loading()">
+            <i class="pi pi-spin pi-spinner"></i>
+            Guardando...
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" *ngIf="loading()">
+    <i class="pi pi-spin pi-spinner"></i>
+    <p>Guardando activo...</p>
+  </div>
+</div>

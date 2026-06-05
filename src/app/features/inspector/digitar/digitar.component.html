@@ -1,0 +1,125 @@
+<div class="digitar-container">
+  <div class="digitar-header">
+    <button class="btn-back" (click)="volver()">
+      <i class="pi pi-arrow-left"></i>
+      Volver
+    </button>
+    <h2>Digitar Código</h2>
+  </div>
+
+  <!-- Formulario de búsqueda -->
+  <div class="busqueda-form" *ngIf="!activoEncontrado() && !errorMessage()">
+    <div class="form-icon">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <p>Ingrese el código del activo manualmente</p>
+    
+    <div class="form-group">
+      <label for="codigo">Código del Activo</label>
+      <input
+        type="text"
+        id="codigo"
+        [(ngModel)]="codigo"
+        name="codigo"
+        placeholder="Ej: 7501000111800"
+        [disabled]="loading()"
+        (keyup.enter)="buscarActivo()"
+        class="input-codigo"
+      />
+    </div>
+
+    <button 
+      class="btn-buscar" 
+      (click)="buscarActivo()"
+      [disabled]="loading()">
+      <span *ngIf="!loading()">
+        <i class="pi pi-search"></i>
+        Buscar Activo
+      </span>
+      <span *ngIf="loading()">
+        <i class="pi pi-spin pi-spinner"></i>
+        Buscando...
+      </span>
+    </button>
+  </div>
+
+  <!-- Activo encontrado -->
+  <div class="activo-encontrado" *ngIf="activoEncontrado() && !loading()">
+    <div class="success-icon">
+      <i class="pi pi-check-circle"></i>
+    </div>
+    <h3>Activo Encontrado</h3>
+    
+    <div class="activo-datos">
+      <div class="dato-item">
+        <label>ID Activo:</label>
+        <span>{{ activoEncontrado()?.idActivo }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Etiqueta:</label>
+        <span>{{ activoEncontrado()?.etiqueta }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Descripción:</label>
+        <span>{{ activoEncontrado()?.descripcion }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Marca:</label>
+        <span>{{ activoEncontrado()?.marca }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Serial:</label>
+        <span>{{ activoEncontrado()?.serial }}</span>
+      </div>
+      <div class="dato-item">
+        <label>Modelo:</label>
+        <span>{{ activoEncontrado()?.modelo }}</span>
+      </div>
+      <div class="dato-item" *ngIf="activoEncontrado()?.responsable">
+        <label>Responsable:</label>
+        <span>{{ activoEncontrado()?.responsable }}</span>
+      </div>
+      <div class="dato-item" *ngIf="activoEncontrado()?.ciudad">
+        <label>Ciudad:</label>
+        <span>{{ activoEncontrado()?.ciudad }}</span>
+      </div>
+    </div>
+
+    <div class="activo-acciones">
+      <button class="btn-accion btn-editar" (click)="editarActivo()">
+        <i class="pi pi-pencil"></i>
+        Editar
+      </button>
+      <button class="btn-accion btn-enviar" (click)="enviarActivo()">
+        <i class="pi pi-check"></i>
+        Enviar
+      </button>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="error-encontrado" *ngIf="errorMessage() && !loading()">
+    <div class="error-icon">
+      <i class="pi pi-times-circle"></i>
+    </div>
+    <h3>No se encontró el activo</h3>
+    <p>{{ errorMessage() }}</p>
+    
+    <div class="error-acciones">
+      <button class="btn-accion btn-reintentar" (click)="intentarNuevamente()">
+        <i class="pi pi-refresh"></i>
+        Intentar Nuevamente
+      </button>
+      <button class="btn-accion btn-volver" (click)="volver()">
+        <i class="pi pi-arrow-left"></i>
+        Volver al Menú
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-overlay" *ngIf="loading()">
+    <i class="pi pi-spin pi-spinner"></i>
+    <p>Procesando...</p>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="toolbar">
+  <div class="toolbar-left">
+    <img *ngIf="logo" [src]="logo" alt="Logo" class="toolbar-logo" />
+    <div class="toolbar-title">
+      <h1>{{ title }}</h1>
+      <p *ngIf="subtitle">{{ subtitle }}</p>
+    </div>
+  </div>
+  <div class="toolbar-right">
+    <span *ngIf="userLabel" class="user-label">{{ userLabel }}</span>
+    <button *ngIf="showLogout" class="btn-logout" (click)="onLogout.emit()">
+      <i class="pi pi-sign-out"></i>
+      Cerrar sesión
+    </button>
+  </div>
+</div>

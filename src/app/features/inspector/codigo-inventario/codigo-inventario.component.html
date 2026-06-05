@@ -1,0 +1,42 @@
+<div class="codigo-container">
+  <div class="codigo-card">
+    <div class="codigo-header">
+      <img src="assets/logo.png" alt="Logo RTI" class="logo" />
+      <h1>Código de Inventario</h1>
+      <p>Ingrese el código del inventario asignado</p>
+    </div>
+
+    <div class="codigo-form">
+      <div class="form-group">
+        <label for="codigo">Código de Inventario</label>
+        <input
+          type="text"
+          id="codigo"
+          [(ngModel)]="codigo"
+          name="codigo"
+          placeholder="Ej: INV-BN-2027"
+          [disabled]="loading()"
+          (keyup.enter)="validarCodigo()"
+          class="input-codigo"
+        />
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage()">
+        <i class="pi pi-exclamation-circle"></i>
+        {{ errorMessage() }}
+      </div>
+
+      <button 
+        type="button" 
+        class="btn-continuar" 
+        (click)="validarCodigo()"
+        [disabled]="loading()">
+        <span *ngIf="!loading()">Continuar</span>
+        <span *ngIf="loading()">
+          <i class="pi pi-spin pi-spinner"></i>
+          Validando...
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

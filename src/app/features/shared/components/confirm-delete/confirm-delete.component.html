@@ -1,0 +1,19 @@
+<div class="modal-overlay" *ngIf="visible" (click)="onCancel.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <i class="pi pi-exclamation-triangle"></i>
+      <h3>{{ title }}</h3>
+    </div>
+    <div class="modal-body">
+      <p>{{ message }}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-cancel" (click)="onCancel.emit()">
+        Cancelar
+      </button>
+      <button class="btn btn-confirm" (click)="onConfirm.emit()">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

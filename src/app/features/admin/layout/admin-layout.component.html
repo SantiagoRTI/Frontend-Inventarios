@@ -1,0 +1,23 @@
+<div class="admin-layout">
+  <app-toolbar
+    [title]="environment.appName"
+    [subtitle]="'Panel Administrador'"
+    [logo]="environment.logo"
+    [userLabel]="currentUser"
+    [showLogout]="true"
+    (onLogout)="logout()">
+  </app-toolbar>
+
+  <div class="layout-body">
+    <app-sidenav
+      [title]="'Administración'"
+      [items]="menuItems">
+    </app-sidenav>
+
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-loading></app-loading>
+</div>

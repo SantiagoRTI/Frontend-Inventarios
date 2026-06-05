@@ -1,0 +1,85 @@
+<div class="reporte-container">
+  <div class="reporte-header">
+    <button class="btn-back" (click)="volver()">
+      <i class="pi pi-arrow-left"></i>
+      Volver
+    </button>
+    <h2>Generar Reporte</h2>
+  </div>
+
+  <div class="reporte-card">
+    <!-- Información del inventario -->
+    <div class="inventario-info" *ngIf="inventario()">
+      <div class="info-icon">
+        <i class="pi pi-folder"></i>
+      </div>
+      <div class="info-content">
+        <h3>{{ inventario()?.nombre }}</h3>
+        <div class="info-details">
+          <div class="detail-item">
+            <i class="pi pi-tag"></i>
+            <span><strong>Código:</strong> {{ inventario()?.codigo }}</span>
+          </div>
+          <div class="detail-item">
+            <i class="pi pi-info-circle"></i>
+            <span><strong>Estado:</strong> {{ inventario()?.estado }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripción del reporte -->
+    <div class="reporte-descripcion">
+      <div class="desc-icon">
+        <i class="pi pi-file-excel"></i>
+      </div>
+      <div class="desc-content">
+        <h4>Reporte Excel de Activos</h4>
+        <p>
+          Este reporte contiene todos los activos registrados en el inventario,
+          incluyendo los datos de origen (administrador) y los registrados durante
+          la inspección, con su correspondiente estado de cruce.
+        </p>
+        <ul>
+          <li><strong>Cruce Normal:</strong> Activos que coinciden entre administrador e inspector</li>
+          <li><strong>Editado:</strong> Activos con modificaciones respecto a la carga original</li>
+          <li><strong>Sobrante:</strong> Activos encontrados solo por el inspector</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Botón de descarga -->
+    <div class="reporte-acciones">
+      <button 
+        class="btn-descargar" 
+        (click)="descargarReporte()"
+        [disabled]="loading()"
+        [class.btn-success]="descargado()">
+        <span *ngIf="!loading() && !descargado()">
+          <i class="pi pi-download"></i>
+          Descargar Reporte Excel
+        </span>
+        <span *ngIf="loading()">
+          <i class="pi pi-spin pi-spinner"></i>
+          Generando Reporte...
+        </span>
+        <span *ngIf="descargado()">
+          <i class="pi pi-check-circle"></i>
+          ¡Descargado Exitosamente!
+        </span>
+      </button>
+      
+      <p class="help-text" *ngIf="!loading() && !descargado()">
+        <i class="pi pi-info-circle"></i>
+        El archivo Excel se descargará automáticamente en su dispositivo
+      </p>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" *ngIf="loading()">
+    <i class="pi pi-spin pi-spinner"></i>
+    <p>{{ pasoActual() || 'Generando reporte...' }}</p>
+    <span class="loading-subtext">Esto puede tomar unos segundos</span>
+  </div>
+</div>

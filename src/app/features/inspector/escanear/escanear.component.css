@@ -1,0 +1,482 @@
+.escanear-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.escanear-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-back:hover {
+  border-color: var(--color-toolbar);
+  color: var(--color-toolbar);
+}
+
+.escanear-header h2 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 1.75rem;
+}
+
+/* Scanner inicio */
+.scanner-inicio {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.formatos-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--color-background-light);
+  border: 1.5px solid var(--color-border);
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.badge-qr {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #16a34a;
+}
+
+.inicio-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(135deg, var(--color-toolbar) 0%, var(--color-toolbar-hover) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inicio-icon i {
+  font-size: 3rem;
+  color: white;
+}
+
+.scanner-inicio p {
+  margin: 0 0 2rem 0;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.btn-iniciar {
+  padding: 1rem 2.5rem;
+  background: var(--color-toolbar);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-iniciar:hover {
+  background: var(--color-toolbar-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-iniciar i {
+  font-size: 1.3rem;
+}
+
+/* Scanner activo */
+.scanner-activo {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.scanner-frame {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.scanner-frame ::ng-deep video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scanner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: var(--color-btn-detail);
+  box-shadow: 0 0 10px var(--color-btn-detail);
+  animation: scan 2s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0%, 100% {
+    transform: translateY(-100px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+.scan-instruction {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.scanner-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-control {
+  padding: 0.75rem 1.5rem;
+  background: var(--color-btn-edit);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-control:hover {
+  background: var(--color-btn-edit-hover);
+}
+
+.btn-control.btn-cancel {
+  background: var(--color-cancel);
+  color: var(--color-cancel-text);
+}
+
+.btn-control.btn-cancel:hover {
+  background: var(--color-cancel-hover);
+}
+
+/* Activo encontrado */
+.activo-encontrado {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: var(--color-success-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon i {
+  font-size: 3rem;
+  color: var(--color-success-text);
+}
+
+.activo-encontrado h3 {
+  margin: 0 0 2rem 0;
+  color: var(--color-success-text);
+  font-size: 1.5rem;
+}
+
+.activo-datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.dato-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--color-background-light);
+  border-radius: 8px;
+}
+
+.dato-item label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dato-item span {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.activo-acciones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-accion {
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-editar {
+  background: var(--color-btn-edit);
+  color: white;
+}
+
+.btn-editar:hover {
+  background: var(--color-btn-edit-hover);
+  transform: translateY(-2px);
+}
+
+.btn-enviar {
+  background: var(--color-btn-add);
+  color: white;
+}
+
+.btn-enviar:hover {
+  background: var(--color-btn-add-hover);
+  transform: translateY(-2px);
+}
+
+/* Error */
+.error-encontrado {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.error-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: var(--color-danger-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-icon i {
+  font-size: 3rem;
+  color: var(--color-danger-text);
+}
+
+.error-encontrado h3 {
+  margin: 0 0 1rem 0;
+  color: var(--color-danger-text);
+  font-size: 1.5rem;
+}
+
+.error-encontrado p {
+  margin: 0 0 2rem 0;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.error-acciones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-reintentar {
+  background: var(--color-toolbar);
+  color: white;
+}
+
+.btn-reintentar:hover {
+  background: var(--color-toolbar-hover);
+}
+
+.btn-volver {
+  background: var(--color-cancel);
+  color: var(--color-cancel-text);
+}
+
+.btn-volver:hover {
+  background: var(--color-cancel-hover);
+}
+
+/* Loading */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 9999;
+  color: white;
+}
+
+.loading-overlay i {
+  font-size: 3rem;
+}
+
+.loading-overlay p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .escanear-container {
+    padding: 0.75rem;
+  }
+
+  .escanear-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .scanner-inicio {
+    padding: 2rem 1.5rem;
+  }
+
+  .activo-datos {
+    grid-template-columns: 1fr;
+  }
+
+  .activo-acciones {
+    flex-direction: column;
+  }
+
+  .btn-accion {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .escanear-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .escanear-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .inicio-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .inicio-icon i {
+    font-size: 2.5rem;
+  }
+
+  .btn-iniciar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .scanner-controls {
+    flex-direction: column;
+  }
+
+  .btn-control {
+    width: 100%;
+    justify-content: center;
+  }
+}

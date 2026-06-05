@@ -1,0 +1,81 @@
+<div class="inventarios-container">
+  <h2>Gestión de Inventarios</h2>
+
+  <app-table
+    [columns]="columns"
+    [data]="inventarios()"
+    [loading]="loading()"
+    [actions]="['view', 'edit', 'delete']"
+    [showAddButton]="true"
+    [addButtonLabel]="'Agregar Inventario'"
+    (onAction)="handleAction($event)"
+    (onAdd)="showFormModal = true; resetForm()">
+  </app-table>
+
+  <!-- Modal Formulario -->
+  <div class="modal-overlay" *ngIf="showFormModal" (click)="showFormModal = false">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>{{ editingId ? 'Editar Inventario' : 'Nuevo Inventario' }}</h3>
+        <button class="btn-close" (click)="showFormModal = false">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+      <form (ngSubmit)="saveInventario()" class="modal-body">
+        <div class="form-group">
+          <label>Nombre del Inventario *</label>
+          <input
+            type="text"
+            [(ngModel)]="formData.nombre"
+            name="nombre"
+            required
+            placeholder="Ej: Inventario Sede Principal 2026"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Código *</label>
+          <input
+            type="text"
+            [(ngModel)]="formData.codigo"
+            name="codigo"
+            required
+            placeholder="Ej: INV-SP-2026"
+            [disabled]="!!editingId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Estado *</label>
+          <select [(ngModel)]="formData.estado" name="estado" required>
+            <option value="">Seleccionar estado</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Ejecucion">En Ejecución</option>
+            <option value="Finalizado">Finalizado</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-cancel" (click)="showFormModal = false">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="saving()">
+            <span *ngIf="!saving()">{{ editingId ? 'Actualizar' : 'Guardar' }}</span>
+            <span *ngIf="saving()">
+              <i class="pi pi-spin pi-spinner"></i> Guardando...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Confirmar Eliminación -->
+  <app-confirm-delete
+    [visible]="showDeleteModal"
+    [title]="'Eliminar Inventario'"
+    [message]="'¿Está seguro de que desea eliminar el inventario ' + deletingInventario?.nombre + '?'"
+    (onConfirm)="confirmDelete()"
+    (onCancel)="showDeleteModal = false; deletingInventario = null">
+  </app-confirm-delete>
+</div>

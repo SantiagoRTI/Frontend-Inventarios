@@ -1,0 +1,63 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="assets/logo.png" alt="Logo RTI" class="logo" />
+      <h1>Inventarios RTI</h1>
+      <p>Portal de Administración</p>
+    </div>
+    
+    <form (ngSubmit)="login()" class="login-form">
+      <div class="form-group">
+        <label for="usuario">Correo Electrónico</label>
+        <div class="input-wrapper">
+          <i class="pi pi-user"></i>
+          <input
+            type="email"
+            id="usuario"
+            [(ngModel)]="credentials.usuario"
+            name="usuario"
+            placeholder="correo@rti.com.co"
+            required
+            [disabled]="loading"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <div class="input-wrapper">
+          <i class="pi pi-lock"></i>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            [(ngModel)]="credentials.password"
+            name="password"
+            placeholder="Ingrese su contraseña"
+            required
+            [disabled]="loading"
+          />
+          <button
+            type="button"
+            class="btn-toggle-password"
+            (click)="showPassword = !showPassword"
+            [disabled]="loading">
+            <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        <i class="pi pi-exclamation-circle"></i>
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-login" [disabled]="loading">
+        <span *ngIf="!loading">Iniciar Sesión</span>
+        <span *ngIf="loading">
+          <i class="pi pi-spin pi-spinner"></i>
+          Ingresando...
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
